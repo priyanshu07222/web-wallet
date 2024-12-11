@@ -8,6 +8,7 @@ import { Ethereum } from './Ethereum';
 export const Hero = () => {
     const [mneumonic, setMneumonic] = useState('');
     const [showSecretPhrase, setShowSecretPhrase] = useState(false);
+    const [seedPhrase, setSeedPhrase] = useState<Buffer>()
 
 
     const handleMneumonic = async () => {
@@ -21,6 +22,7 @@ export const Hero = () => {
             const mnemonicGen = bip39.generateMnemonic()
             const seed = await bip39.mnemonicToSeed(mnemonicGen);
             setMneumonic(mnemonicGen);
+            setSeedPhrase(seed)
             console.log(mnemonicGen, seed.toString())
         }
     }
@@ -49,8 +51,8 @@ export const Hero = () => {
                 }
 
                 {
-                    mneumonic && <div className='flex justify-between items-center gap-6 my-10'>
-                        <Solana />
+                    mneumonic && seedPhrase && <div className='flex justify-between items-center gap-6 my-10'>
+                        <Solana seed={seedPhrase} />
                         <Ethereum />
                     </div>
                 }
