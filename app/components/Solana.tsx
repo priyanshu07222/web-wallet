@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from 'react';
 import nacl from 'tweetnacl';
 import { derivePath } from "ed25519-hd-key";
@@ -32,13 +34,16 @@ export const Solana = ({ seed }: { seed: Buffer }) => {
                 <p className='text-2xl font-bold'>Solana Wallet</p>
                 <div className='flex items-center gap-8'>
                     <p onClick={addWallet} className='bg-black text-white text-sm px-4 py-2 rounded-lg cursor-pointer'>Add wallet</p>
-                    <p className='bg-red-500 text-white text-sm px-4 py-2 rounded-lg cursor-pointer'>delete</p>
+                    <p className='bg-red-500 text-white text-sm px-4 py-2 rounded-lg cursor-pointer' onClick={() => setSolWallet([])}>clear wallet</p>
                 </div>
             </div>
             <div >
                 {solWallet.map((wallet, index) => (
                     <div key={index} className='mt-10 border rounded-lg'>
-                        <p className='font-semibold text-xl py-4 px-2'>Wallet {index + 1}:</p>
+                        <div className='flex justify-between items-center px-4'>
+                            <p className='font-semibold text-xl py-4 '>Wallet {index + 1}:</p>
+                            <img src="trash-delete-bin.svg" alt="" className='w-4 h-4 cursor-pointer active:scale-110' />
+                        </div>
                         <div className='bg-gray-200 p-4 rounded-lg'>
                             <div className='my-2'>
                                 <p className='font-bold'>Public Key</p>

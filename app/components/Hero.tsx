@@ -47,8 +47,12 @@ export const Hero = () => {
                                 <p className='text-3xl text-gray-800 font-bold'>Your Secret Phrase</p>
                                 <p onClick={() => setShowSecretPhrase((prev) => !prev)} className='py-2 px-6 text-gray-700 transition-all duration-300 cursor-pointer font-semibold hover:bg-slate-800 hover:text-white rounded-lg'>{showSecretPhrase ? "Hide" : "Show"} Phrase</p>
                             </div>
-                            {showSecretPhrase && <div>
-                                {mneumonic}
+                            {showSecretPhrase && <div className=' grid grid-cols-4'>
+                                {mneumonic.split(" ").map((item, index) => (
+
+                                    <p key={index} className='m-2 border rounded-lg p-2 '>{item}</p>
+
+                                ))}
                             </div>}
                         </div>
                     </div>
@@ -57,7 +61,7 @@ export const Hero = () => {
                 {
                     mneumonic && seedPhrase && <div className='flex justify-between items-center gap-6 my-10'>
                         <Solana seed={seedPhrase} />
-                        <Ethereum />
+                        <Ethereum seed={seedPhrase} />
                     </div>
                 }
             </div>
