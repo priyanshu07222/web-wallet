@@ -42,7 +42,9 @@ export const Solana = ({ seed }: { seed: Buffer }) => {
                     <div key={index} className='mt-10 border rounded-lg'>
                         <div className='flex justify-between items-center px-4'>
                             <p className='font-semibold text-xl py-4 '>Wallet {index + 1}:</p>
-                            <img src="trash-delete-bin.svg" alt="" className='w-4 h-4 cursor-pointer active:scale-110' />
+                            <div className='hover:bg-gray-300 p-2 rounded-full' onClick={() => setSolWallet((prev) => prev.filter(x => x.privateKey != wallet.privateKey))}>
+                                <img src="trash-delete-bin.svg" alt="" className='w-4 h-4  rounded-full cursor-pointer active:scale-110' />
+                            </div>
                         </div>
                         <div className='bg-gray-200 p-4 rounded-lg'>
                             <div className='my-2'>
